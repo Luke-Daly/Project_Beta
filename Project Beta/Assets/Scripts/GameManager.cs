@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        //Start the game, start coroutines to spawn targets and hide the title screen
         isGameActive = true;
         score = 0;
 
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnTarget()
     {
+        //Loop used to spawn targets while the game is active
         while (isGameActive)
         {
            yield return new WaitForSeconds(spawnRate);
@@ -56,6 +58,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnPowerUp()
     {
+        //Loop used to spawn powerUps
         while (isGameActive)
         {
             yield return new WaitForSeconds(powerUpSpawnRate);
@@ -65,23 +68,27 @@ public class GameManager : MonoBehaviour
 
     public void StartTimer()
     {
+        //Starts powerUp countdown timer
         StartCoroutine(powerUpCountdownRoutine());
     }
 
     IEnumerator powerUpCountdownRoutine()
     {
+        //Total time that powerUp lasts
         yield return new WaitForSeconds(3);
         Time.timeScale = 1.0f;
     }
 
     public void UpdateScore(int scoreToAdd)
     {
+        //Update UI score
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
     }
 
     public void GameOver()
     {
+        //Show game over screen and allow the player the option to replay
         gameOver.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
         isGameActive = false;
@@ -89,6 +96,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        //Restart the game
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1.0f;
     }
