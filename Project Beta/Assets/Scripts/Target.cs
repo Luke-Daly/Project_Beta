@@ -7,16 +7,16 @@ public class Target : MonoBehaviour
     private Rigidbody targetRb;
     private GameManager gameManager;
 
-    public float speed = 15.0f;
+    [SerializeField] private float speed = 15.0f;
     private float xRange = 15;
-    private float yHighBound = 7;
-    private float yLowBound = 3;
+    [SerializeField] private float yHighBound = 7;
+    [SerializeField] private float yLowBound = 4;
     private float zBound = -30;
 
     public int pointValue;
 
     public ParticleSystem goodParticle;
-    public ParticleSystem badParticle;
+    public ParticleSystem explosionParticle;
 
     private AudioSource playerAudio;
     public AudioClip goodSound;
@@ -54,12 +54,14 @@ public class Target : MonoBehaviour
         {
             Destroy(gameObject);
             gameManager.UpdateScore(pointValue);
+            explosionParticle.Play();
         }
         //Destroy object and update score
         else if (gameManager.isGameActive && CompareTag("Good"))
         {
             Destroy(gameObject);
             gameManager.UpdateScore(pointValue);
+            //goodParticle.Play();
         }
         //Check for power up and start power up countdown
         else if(gameManager.isGameActive && CompareTag("PowerUp"))

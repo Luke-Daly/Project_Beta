@@ -19,14 +19,9 @@ public class StartButton : MonoBehaviour
         button.onClick.AddListener(SetDifficulty);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void SetDifficulty()
     {
-        gameManager.StartGame();
+        //Start the game and affect the spawn rates based on the difficulty
+        gameManager.StartGame(difficulty);
     }
 }

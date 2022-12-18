@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public List<GameObject> targets;
     public GameObject powerUpPrefab;
-    private float spawnRate = 1.0f;
-    private float powerUpSpawnRate = 7.0f;
+    [SerializeField] private float spawnRate = 1.0f;
+    [SerializeField] private float powerUpSpawnRate = 7.0f;
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOver;
@@ -20,23 +20,12 @@ public class GameManager : MonoBehaviour
     private int score;
     public bool isGameActive;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void StartGame()
+    public void StartGame(int difficulty)
     {
         //Start the game, start coroutines to spawn targets and hide the title screen
         isGameActive = true;
         score = 0;
+        spawnRate /= difficulty;
 
         StartCoroutine(SpawnTarget());
         UpdateScore(0);
