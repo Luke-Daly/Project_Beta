@@ -7,3 +7,5 @@ Luke Cullen: FollowPlayer and PlayerController scripts,
 UI elements (canvas) as well as GithubRepo and StartButton scripts
 
 Both: Source assets from Unity Asset Store
+
+Signed: Luke Daly and Luke Cullen
